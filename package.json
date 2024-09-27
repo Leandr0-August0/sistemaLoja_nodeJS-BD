@@ -1,0 +1,21 @@
+{
+    "name": "atv1",
+    "version": "1.0.0",
+    "description": "Atividade 1",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "npx nodemon index.js"
+    },
+    "author": "Leandro Augusto de Souza Muniz",
+    "license": "ISC",
+    "dependencies": {
+        "bootstrap": "^5.3.3",
+        "ejs": "^3.1.10",
+        "express": "^4.21.0",
+        "mysql2": "^3.11.3",
+        "nodemon": "^3.1.4",
+        "sequelize": "^6.37.3"
+    },
+    "type": "module"
+}

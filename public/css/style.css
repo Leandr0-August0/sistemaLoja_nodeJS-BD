@@ -1,0 +1,79 @@
+#card {
+    height: 60px;
+}
+#wrap {
+    margin-left: 2vw;
+    width: 96vw;
+}
+#recuo {
+    margin-left: 2vw;
+    width: 96vw;
+}
+#navForm {
+    display: inline-block;
+}
+
+#titulo {
+    text-align: center;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-bottom: 100px;
+}
+
+#pesquisa input[type="text"] {
+    border-radius: 4px 0 0 4px;
+    border: none;
+    padding: 6px;
+    font-size: 16px;
+}
+
+#pesquisa button {
+    padding: 6px 10px;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+}
+
+footer {
+    margin-top: 50px;
+    color: #131313;
+    text-align: center;
+    padding: 10px 0;
+    position: static;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 0px;
+}
+
+th,
+td {
+    padding: 10px;
+    border-bottom: 1px solid #5e5e5e;
+}
+
+
+
+table {
+    width: 96vw;
+    color: black;
+    text-align: center;
+    border-color: black;
+}
+
+ul{
+    list-style-type: none;
+}
+
+#fotos{
+    object-fit: contain;
+}

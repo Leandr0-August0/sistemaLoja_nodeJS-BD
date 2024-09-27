@@ -1,0 +1,68 @@
+<%- include('../views/partials/header') %>
+<!--  -->
+<%- include('../views/partials/navbar') %>
+
+<h2 id="titulo" class="text-info"><br /><b>Clientes</b></h2>
+<div class="bg-info mx-auto my-5" style="height: 3px; width: 90%"></div>
+
+
+<div class="container">
+    <div class="card shadow-lg p-3 mx-5 bg-white rounded">
+        <div class="card-header bg-dark text-light">
+            <h1>Adicionar clientes</h1>
+        </div>
+        <div class="card-body">
+            <form class="form-control" action="/clientes/new" method="post" >
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+                
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email" name="email" required>
+                
+                <label for="tel">Telefone:</label>
+                <input type="text" class="form-control" id="tel" name="tel" required>
+                <br>
+                <button type="submit" class="btn btn-success">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="container">
+    <div class="card shadow-lg p-3 mx-5 bg-white rounded">
+        <div class="card-header bg-dark text-light">
+            <h1>Clientes</h1>
+        </div>
+        <div class="card-body">
+            <table class="w-100">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th colspan="2">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% clientes.forEach(cliente=> { %>
+                    <tr>
+                        <td><img src="imgs/avatar.png" width="30px" /></td>
+                        <td><%= cliente.id %></td>
+                        <td><%= cliente.nome %></td>
+                        <td><%= cliente.email %></td>
+                        <td><%= cliente.tel %></td>
+                        <td><a href="#" class="btn btn-warning">Editar</a></td>
+                        <td><a href="/clientes/delete/<%= cliente.id %>" class="btn btn-danger" id="btnExcluir">Excluir</a></td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br>
+
+<%- include('../views/partials/footer') %>

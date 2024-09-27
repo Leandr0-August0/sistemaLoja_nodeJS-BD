@@ -1,0 +1,155 @@
+<%- include('../views/partials/header') %>
+<!--  -->
+<%- include('../views/partials/navbar') %>
+
+<h2 id="titulo" class="text-info"><br /><b>Pedidos</b></h2>
+<div class="bg-info mx-auto my-5" style="height: 3px; width: 90%"></div>
+
+<div class="container">
+    <div class="card shadow-lg p-3 mx-5 bg-white">
+        <div class="card-header bg-dark text-light">
+            <h1>Cadastrar pedidos</h1>
+        </div>
+        <div class="card-body">
+            <form action="/pedidos/new" class="form-control" method="post">
+                <div class="row">
+                    <div class="col-md">
+                        <label for="cliente">Nome do cliente:*</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="cliente"
+                            name="cliente"
+                            required
+                        />
+                    </div>
+                    <div class="col-md-auto">
+                        <label for="qtd">Quantidade de produtos:*</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="qtd"
+                            name="qtd"
+                            required
+                        />
+                    </div>
+                    <div class="col-md-auto">
+                        <label for="total">Valor total do pedido:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="total"
+                            name="total"
+                            required
+                        />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="datPedido">Data do pedido:*</label>
+                        <input
+                            type="datetime-local"
+                            class="form-control"
+                            required
+                        />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="datPedido">Data do envio:</label>
+                        <input type="datetime-local" class="form-control" />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="datPedido">Data da entrega:</label>
+                        <input type="datetime-local" class="form-control" />
+                    </div>
+                </div>
+
+                <h6 class="text-secondary">*campo obrigatório</h6>
+                <br />
+                <button type="submit" class="btn btn-success">
+                    Adicionar pedido
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+<div class="container">
+    <div class="card shadow-lg p-3 mx-5 bg-white rounded">
+        <div class="card-header bg-dark text-light bordered-4">
+            <h1>Pedidos</h1>
+        </div>
+        <div class="card-body">
+            <table class="w-100">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th scope="col">Id</th>
+                        <th scope="col" class="col-3">Cliente</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Data do Pedido</th>
+                        <th scope="col">Prazo do Envio</th>
+                        <th scope="col">Prazo da Entrega</th>
+                        <th colspan="2">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% pedidos.forEach(pedido => { %>
+                    <tr>
+                        <td>
+                            <img src="imgs/order.png" width="30px" />
+                        </td>
+                        <th scope="row"><%= pedido.id %></th>
+                        <td><%= pedido.clienteId.nome %></td>
+                        <td><%= pedido.qtd %></td>
+                        <td>
+                            <% if (pedido.datPedido) { %> <%= new
+                            Date(pedido.datPedido).toLocaleDateString('pt-BR')
+                            %>
+                            <br />
+                            <%= new
+                            Date(pedido.datPedido).toLocaleTimeString('pt-BR')
+                            %> <% } %>
+                        </td>
+                        <td>
+                            <% if (pedido.datEnvio) { %> <%= new
+                            Date(pedido.datEnvio).toLocaleDateString('pt-BR') %>
+                            <br />
+                            <%= new
+                            Date(pedido.datEnvio).toLocaleTimeString('pt-BR') %>
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (pedido.datEntrega) { %> <%= new
+                            Date(pedido.datEntrega).toLocaleDateString('pt-BR')
+                            %>
+                            <br />
+                            <%= new
+                            Date(pedido.datEntrega).toLocaleTimeString('pt-BR')
+                            %> <% } %>
+                        </td>
+                        <td><a href="#" class="btn btn-warning">Editar</a></td>
+                        <td>
+                            <% if(pedido.datEntrega){ %>
+                            <p
+                                class="rounded-2 p-2 my-auto bg-success text-light"
+                            >
+                                Finalizado
+                            </p>
+                            <% }else{ %>
+                            <a
+                                href="/pedidos/cancelar/<%= pedido.id %>"
+                                class="btn btn-danger"
+                                >Cancelar</a
+                            >
+                            <% } %>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br />
+
+<%- include('../views/partials/footer') %>
