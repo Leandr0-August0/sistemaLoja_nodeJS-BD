@@ -5,29 +5,51 @@
 <h2 id="titulo" class="text-info"><br /><b>Clientes</b></h2>
 <div class="bg-info mx-auto my-5" style="height: 3px; width: 90%"></div>
 
-
 <div class="container">
     <div class="card shadow-lg p-3 mx-5 bg-white rounded">
         <div class="card-header bg-dark text-light">
             <h1>Adicionar clientes</h1>
         </div>
         <div class="card-body">
-            <form class="form-control" action="/clientes/new" method="post" >
+            <form class="form-control" action="/clientes/new" method="post">
                 <label for="nome">Nome:</label>
-                <input type="text" class="form-control" id="nome" name="nome" required>
-                
-                <label for="email">Email:</label>
-                <input type="text" class="form-control" id="email" name="email" required>
-                
-                <label for="tel">Telefone:</label>
-                <input type="text" class="form-control" id="tel" name="tel" required>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="nome"
+                    name="nome"
+                    required
+                />
+
+                <div class="row">
+                    <div class="col-md">
+                        <label for="email">Email:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            required
+                        />
+                    </div>
+                    <div class="col-md-auto">
+                        <label for="tel">Telefone:</label>
+                        <input
+                            type="tel"
+                            class="form-control"
+                            id="tel"
+                            name="tel"
+                            required
+                        />
+                    </div>
+                </div>
                 <br>
-                <button type="submit" class="btn btn-success">Cadastrar</button>
+                <button type="submit" class="btn btn-success mb-2">Cadastrar</button>
             </form>
         </div>
     </div>
 </div>
-<br>
+<br />
 
 <div class="container">
     <div class="card shadow-lg p-3 mx-5 bg-white rounded">
@@ -55,7 +77,14 @@
                         <td><%= cliente.email %></td>
                         <td><%= cliente.tel %></td>
                         <td><a href="#" class="btn btn-warning">Editar</a></td>
-                        <td><a href="/clientes/delete/<%= cliente.id %>" class="btn btn-danger" id="btnExcluir">Excluir</a></td>
+                        <td>
+                            <a
+                                href="/clientes/delete/<%= cliente.id %>"
+                                class="btn btn-danger"
+                                id="btnExcluir"
+                                >Excluir</a
+                            >
+                        </td>
                     </tr>
                     <% }) %>
                 </tbody>
@@ -63,6 +92,6 @@
         </div>
     </div>
 </div>
-<br>
+<br />
 
 <%- include('../views/partials/footer') %>

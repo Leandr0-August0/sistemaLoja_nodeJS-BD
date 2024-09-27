@@ -10,15 +10,16 @@
 <% categorias.forEach((categoria) => { %>
 <h4 class="text-info mx-5">
     <b>
-        <p><%= categoria %></p>
+        <p><%= categoria.categoria %></p>
     </b>
 </h4>
 
-<% if(categoria == 'Esporte'){ %>
-<!-- CLASSE TIPO TABLE -->
+<% if (categoria.Produtos.length > 0) { %>
+<!--  -->
+<% categoria.Produtos.forEach((produto) => { %> <% }); %> 
+<!-- corpo do site -->
 <!--row-cols-md- (NUMERO DE CLOUNAS)-->
 <div class="row row-cols-1 row-cols-md-5 g-4" id="wrap">
-    <% listaEsporte.forEach((produtos) => { %>
     <!-- CARD inicio -->
     <div class="col">
         <div class="card shadow p-3 mb-5 bg-white rounded">
@@ -33,16 +34,15 @@
             />
             <div class="card-body overflow-auto dropdown" id="card">
                 <!-- Nome do produto -->
-                <b><%= produtos.produto %></b>
+                <b><%= produto.produto %></b>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <!-- Preço do produto -->
-                    <%= produtos.valorFormatado =
-                    produtos.valor.toLocaleString("pt-BR", { style:
-                    "currency", currency: "BRL", }); %>
+                    <%= produto.valor.toLocaleString("pt-BR", { style: "currency",
+                    currency: "BRL", }); %>
                 </li>
-                <li class="list-group-item">Avaliação</li>
+                <li class="list-group-item"><%= produto.avaliacao %></li>
                 <a href="" class="btn-border-0">
                     <li class="list-group-item">Edit</li>
                 </a>
@@ -53,92 +53,15 @@
         </div>
     </div>
     <!-- CARD fim -->
-    <% }) %>
 </div>
-<% } else if(categoria == 'Casual'){ %>
-<!-- CLASSE TIPO TABLE -->
-<!--row-cols-md- (NUMERO DE CLOUNAS)-->
-<div class="row row-cols-1 row-cols-md-5 g-4" id="wrap">
-    <% listaCasual.forEach((produtos) => { %>
-    <!-- CARD inicio -->
-    <div class="col">
-        <div class="card shadow p-3 mb-5 bg-white rounded">
-            <!-- Imagem do produto -->
-            <img
-                src="<%= produtos.imagem %>"
-                class="card-img-top"
-                id="fotos"
-                height="200px"
-                width="auto"
-                alt=""
-            />
-            <div class="card-body overflow-auto dropdown" id="card">
-                <!-- Nome do produto -->
-                <b><%= produtos.produto %></b>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <!-- Preço do produto -->
-                    <%= produtos.valorFormatado =
-                    produtos.valor.toLocaleString("pt-BR", { style:
-                    "currency", currency: "BRL", }); %>
-                </li>
-                <li class="list-group-item">Avaliação</li>
-                <a href="" class="btn-border-0">
-                    <li class="list-group-item">Edit</li>
-                </a>
-            </ul>
-            <div class="card-footer">
-                <small class="text-muted">Última alteração: 3 mins atrás</small>
-            </div>
-        </div>
-    </div>
-    <!-- CARD fim -->
-    <% }) %>
-</div>
-<% } else if(categoria == 'Moda Feminina'){ %>
-<!-- CLASSE TIPO TABLE -->
-<!--row-cols-md- (NUMERO DE CLOUNAS)-->
-<div class="row row-cols-1 row-cols-md-5 g-4" id="wrap">
-    <% listaFeminino.forEach((produtos) => { %>
-    <!-- CARD inicio -->
-    <div class="col">
-        <div class="card shadow p-3 mb-5 bg-white rounded">
-            <!-- Imagem do produto -->
-            <img
-                src="<%= produtos.imagem %>"
-                class="card-img-top"
-                id="fotos"
-                height="200px"
-                width="auto"
-                alt=""
-            />
-            <div class="card-body overflow-auto dropdown" id="card">
-                <!-- Nome do produto -->
-                <b><%= produtos.produto %></b>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <!-- Preço do produto -->
-                    <%= produtos.valorFormatado =
-                    produtos.valor.toLocaleString("pt-BR", { style:
-                    "currency", currency: "BRL", }); %>
-                </li>
-                <li class="list-group-item">Avaliação</li>
-                <a href="" class="btn-border-0">
-                    <li class="list-group-item">Edit</li>
-                </a>
-            </ul>
-            <div class="card-footer">
-                <small class="text-muted">Última alteração: 3 mins atrás</small>
-            </div>
-        </div>
-    </div>
-    <!-- CARD fim -->
-    <% }) %>
-</div>
+
+
+<% } else { %>
+
+<h3>Nenhum produto encontrado para esta categoria.</h3>
+
 <% } %>
-<br /><br />
+<!--  -->
 <% }) %>
 
 <br />

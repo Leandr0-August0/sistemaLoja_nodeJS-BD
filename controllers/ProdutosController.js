@@ -1,17 +1,24 @@
-import express from 'express'
-const router = express.Router()
+import express from "express";
+const router = express.Router();
+import Produtos from "../models/Produto.js";
+import Categorias from "../models/Categoria.js";
 
 // ROTA PRODUTOS
-router.get("/produtos", function(req,res){
-    const produtos = [
-        {nome: "Celular Motorola E22", preco: 1200, categoria: "Eletroportáteis"},
-        {nome: "Tablet Samsung", preco: 900, categoria: "Eletrônicos"},
-        {nome: "Notebook Lenovo", preco: 3200, categoria: "Computadores"},
-        {nome: "Fone Bluetooth", preco: 150, categoria: "Periféricos"}
-    ]
-    res.render("produtos", {
-        produtos: produtos
+router.get("/produtos", (req, res) => {
+    Categorias.findAll({
+        include: {
+            model: Produtos,
+            required: false, // Isso faz um LEFT JOIN, mude para true para INNER JOIN
+        },
     })
-})
+        .then((categorias) => {
+            res.render("produtos", {
+                categorias: categorias,
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
 
-export default router
+export default router;
