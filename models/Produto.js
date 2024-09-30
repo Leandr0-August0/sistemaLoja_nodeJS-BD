@@ -1,6 +1,5 @@
 //IMPORTANDO O SEQUELIZE E A CONEXÃO
 import Sequelize from "sequelize";
-import { DataTypes } from "sequelize";
 import conection from "../config/sequelize-config.js";
 import Categorias from "./Categoria.js";
 
@@ -14,7 +13,7 @@ const Produtos = conection.define("produtos", {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-            model: "Categorias",
+            model: Categorias,
             key: "id",
         },
     },
@@ -26,7 +25,7 @@ const Produtos = conection.define("produtos", {
         type: Sequelize.TEXT,
     },
     avaliacao: {
-        type: Sequelize.ENUM(1, 2, 3, 4, 5, "Não avaliado"),
+        type: Sequelize.ENUM("1", "2", "3", "4", "5", "Não avaliado"),
         defaultValue: "Não avaliado",
     },
 });
