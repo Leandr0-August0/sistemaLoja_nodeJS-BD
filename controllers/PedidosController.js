@@ -3,7 +3,6 @@ const router = express.Router();
 
 import Pedidos from "../models/Pedido.js";
 import Clientes from "../models/Cliente.js";
-import { where } from "sequelize";
 
 // ROTA PEDIDOS
 router.get("/pedidos", (req, res) => {
