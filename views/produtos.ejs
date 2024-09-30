@@ -16,7 +16,7 @@
 
 <% if (categoria.Produtos.length > 0) { %>
 <!--  -->
-<% categoria.Produtos.forEach((produto) => { %> <% }); %> 
+<% categoria.Produtos.forEach((produto) => { %> 
 <!-- corpo do site -->
 <!--row-cols-md- (NUMERO DE CLOUNAS)-->
 <div class="row row-cols-1 row-cols-md-5 g-4" id="wrap">
@@ -55,14 +55,15 @@
     <!-- CARD fim -->
 </div>
 
-
+<% }) %>
+<!--  -->
 <% } else { %>
 
 <h3>Nenhum produto encontrado para esta categoria.</h3>
 
 <% } %>
 <!--  -->
-<% }) %>
+<% }) %> 
 
 <br />
 <%- include('../views/partials/footer') %>

@@ -11,11 +11,11 @@ const Produtos = conection.define("produtos", {
     },
     categoria: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
             model: Categorias,
             key: "id",
         },
+        allowNull: false,
     },
     valor: {
         type: Sequelize.DECIMAL(6, 2),
@@ -25,8 +25,8 @@ const Produtos = conection.define("produtos", {
         type: Sequelize.TEXT,
     },
     avaliacao: {
-        type: Sequelize.ENUM("1", "2", "3", "4", "5", "Não avaliado"),
-        defaultValue: "Não avaliado",
+        type: Sequelize.DECIMAL(2,1),
+        defaultValue: null,
     },
 });
 
