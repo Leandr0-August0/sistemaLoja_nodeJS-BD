@@ -4,7 +4,8 @@ use loja;
 
 select *  from clientes;
 select *  from pedidos;
-
+select *  from produtos 
+join categorias on produtos.categoria = categorias.id;
 
 #AMOSTRA DE TESTES ->
 INSERT INTO clientes(nome, email, tel, createdAt, updatedAt) VALUES
@@ -40,3 +41,9 @@ INSERT INTO pedidos(qtd, cliente, total, datPedido, datEnvio, datEntrega, create
 (8, 8, 220.15, NOW(), NOW() + INTERVAL 3 DAY, NOW() + INTERVAL 5 DAY, NOW(), NOW()),
 (6, 9, 160.75, NOW(), NOW() + INTERVAL 1 DAY, NOW() + INTERVAL 4 DAY, NOW(), NOW()),
 (12, 10, 350.30, NOW(), NOW() + INTERVAL 2 DAY, NOW() + INTERVAL 7 DAY, NOW(), NOW());
+
+
+drop TABLE pedidos;
+drop TABLE categorias;
+drop TABLE produtos;
+
