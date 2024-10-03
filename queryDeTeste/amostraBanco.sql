@@ -1,11 +1,6 @@
-create table if not exists loja;
+create database if not exists loja;
 use loja;
 
-
-select *  from clientes;
-select *  from pedidos;
-select *  from produtos 
-join categorias on produtos.categoria = categorias.id;
 
 #AMOSTRA DE TESTES ->
 INSERT INTO clientes(nome, email, tel, createdAt, updatedAt) VALUES
@@ -43,7 +38,7 @@ INSERT INTO pedidos(qtd, cliente, total, datPedido, datEnvio, datEntrega, create
 (12, 10, 350.30, NOW(), NOW() + INTERVAL 2 DAY, NOW() + INTERVAL 7 DAY, NOW(), NOW());
 
 
-drop TABLE pedidos;
-drop TABLE categorias;
-drop TABLE produtos;
-
+select *  from clientes;
+select *  from pedidos;
+select *  from produtos 
+join categorias on produtos.categoria = categorias.id;
