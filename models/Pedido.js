@@ -4,7 +4,7 @@ import conection from "../config/sequelize-config.js";
 //POR CONTA DA FOREIGN KEY É NESSESSÁRIO IMPORTAR CLIENTES
 import Clientes from "./Cliente.js";
 
-const Pedidos = conection.define("Pedidos", {
+const Pedidos = conection.define("pedidos", {
     qtd: {
         type: sequelize.INTEGER,
         allowNull: false,

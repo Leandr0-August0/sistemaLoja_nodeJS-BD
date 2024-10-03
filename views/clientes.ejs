@@ -11,13 +11,14 @@
             <h1>Adicionar clientes</h1>
         </div>
         <div class="card-body">
-            <form class="form-control" action="/clientes/new" method="post">
+            <form action="/clientes/new" method="post">
                 <label for="nome">Nome:</label>
                 <input
                     type="text"
                     class="form-control"
                     id="nome"
                     name="nome"
+                    placeholder="Insira o nome do cliente"
                     required
                 />
 
@@ -29,6 +30,7 @@
                             class="form-control"
                             id="email"
                             name="email"
+                            placeholder="Insira o email do cliente"
                             required
                         />
                     </div>
@@ -39,12 +41,15 @@
                             class="form-control"
                             id="tel"
                             name="tel"
+                            placeholder="Telefone do cliente"
                             required
                         />
                     </div>
                 </div>
-                <br>
-                <button type="submit" class="btn btn-success mb-2">Cadastrar</button>
+                <br />
+                <button type="submit" class="btn btn-success mb-2">
+                    Cadastrar
+                </button>
             </form>
         </div>
     </div>
@@ -76,10 +81,17 @@
                         <td><%= cliente.nome %></td>
                         <td><%= cliente.email %></td>
                         <td><%= cliente.tel %></td>
-                        <td><a href="#" class="btn btn-warning">Editar</a></td>
+                        <td>
+                            <a
+                                href="/clientes/edit/<%= cliente.id %>"
+                                class="btn btn-warning"
+                                >Editar</a
+                            >
+                        </td>
                         <td>
                             <a
                                 href="/clientes/delete/<%= cliente.id %>"
+                                onclick="return confirm('Deseja realmente deletar o cliente <%= cliente.nome %>')"
                                 class="btn btn-danger"
                                 id="btnExcluir"
                                 >Excluir</a

@@ -69,5 +69,66 @@ router.get("/pedidos/cancelar/:id", (req, res) => {
 });
 
 //ROTA DE EDIÇÃO
+router.get("/pedidos/edit/:id", (req, res) => {
+    const id = req.params.id;
+    Pedidos.findByPk(id, {
+        include: {
+            model: Clientes, // Faz o INNER JOIN com a tabela Cliente
+            as: 'clienteId',
+            attributes: ["nome"], // Inclui apenas o campo "nome" do Cliente
+        },
+    })
+        .then((pedidos) => {
+            res.render("pedidoEdit", {
+                pedidos: pedidos,
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
+
+//ROTA PARA ALTERAÇÃO
+router.post("/pedidos/update", (req, res) => {
+    function formatDate(date) {
+        const d = new Date(date);
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, "0"); // Mês começa em 0
+        const day = String(d.getDate()).padStart(2, "0");
+        const hours = String(d.getHours()).padStart(2, "0");
+        const minutes = String(d.getMinutes()).padStart(2, "0");
+        return `${year}-${month}-${day} ${hours}:${minutes}:00`; // Retorna no formato esperado
+    }
+
+    const cliente = req.body.cliente;
+    const qtd = req.body.qtd;
+    const total = req.body.total;
+    const datPedido = formatDate(req.body.datPedido);
+    const datEnvio = req.body.datEnvio ? formatDate(req.body.datEnvio) : null;
+    const datEntrega = req.body.datEntrega
+        ? formatDate(req.body.datEntrega)
+        : null;
+    Pedidos.update(
+        {
+            cliente: cliente,
+            qtd: qtd,
+            total: total,
+            datPedido: datPedido,
+            datEnvio: datEnvio,
+            datEntrega: datEntrega,
+        },
+        {
+            where: {
+                cliente: cliente,
+            },
+        }
+    )
+        .then(() => {
+            res.redirect("/pedidos");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
 
 export default router;

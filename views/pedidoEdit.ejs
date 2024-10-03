@@ -1,0 +1,110 @@
+<%- include('../views/partials/header') %>
+<!--  -->
+<%- include('../views/partials/navbar') %>
+
+<div class="bg-info mx-auto mb-4 my-5" style="height: 3px; width: 90%"></div>
+<br />
+
+<div class="container">
+    <div class="card shadow-lg p-3 mx-5 bg-white rounded">
+        <div class="card-header bg-dark text-light">
+            <h1>Editar Cliente</h1>
+        </div>
+        <div class="card-body">
+            <form action="/pedidos/update" method="post">
+                <div class="row">
+                    <div class="col-md">
+                        <label for="cliente">Cliente que fez o pedido:#</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Insira o nome do cliente"
+                            value="<%= pedidos.clienteId.nome %>"
+                            readonly
+                        />
+                        <input
+                            type="hidden"
+                            value="<%= pedidos.cliente %>"
+                            id="cliente"
+                            name="cliente"
+                        />
+                    </div>
+                    <div class="col-md-auto">
+                        <label for="qtd">Quantidade de produtos:*</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="qtd"
+                            name="qtd"
+                            value="<%= pedidos.qtd %>"
+                            required
+                        />
+                    </div>
+                    <div class="col-md-auto">
+                        <label for="total">Valor total do pedido:*</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="total"
+                            name="total"
+                            value="<%= pedidos.total %>"
+                            placeholder="Insira o valor total"
+                            required
+                        />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="datPedido">Data do pedido:#</label>
+                        <input
+                            type="datetime-local"
+                            class="form-control"
+                            value="<%= pedidos.datPedido ? pedidos.datPedido.toISOString().slice(0, 16) : '' %>"
+                            readonly
+                        />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="datEnvio">Data do envio:</label>
+                        <input
+                            type="datetime-local"
+                            class="form-control"
+                            name="datEnvio"
+                            id="datEnvio"
+                            value="<%= pedidos.datEnvio ? pedidos.datEnvio.toISOString().slice(0, 16) : '' %>"
+                        />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="datEntrega">Data da entrega:</label>
+                        <input
+                            type="datetime-local"
+                            class="form-control"
+                            name="datEntrega"
+                            id="datEntrega"
+                            value="<%= pedidos.datEntrega ? pedidos.datEntrega.toISOString().slice(0, 16) : '' %>"
+                        />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <h6 class="text-secondary">*campo obrigatório</h6>
+                    </div>
+                    <div class="col">
+                        <h6 class="text-secondary">#campo indisponível</h6>
+                    </div>
+                </div>
+
+                <br />
+                <button
+                    type="submit"
+                    onclick="return confirm('Deseja realmente deletar o pedido <%= pedidos.id %>')"
+                    class="btn btn-warning"
+                >
+                    Alterar pedido
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../views/partials/footer') %>

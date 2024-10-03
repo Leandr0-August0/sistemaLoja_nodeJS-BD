@@ -23,3 +23,4 @@ const Clientes = conection.define("clientes", {
 // Não força a criação da tabela caso já exista
 Clientes.sync({ force: false });
 export default Clientes;
+ 

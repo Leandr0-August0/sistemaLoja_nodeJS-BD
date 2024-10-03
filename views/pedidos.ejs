@@ -15,13 +15,19 @@
                 <div class="row">
                     <div class="col-md">
                         <label for="cliente">Nome do cliente:*</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="cliente"
+                        <select
                             name="cliente"
+                            id="cliente"
+                            class="form-control"
                             required
-                        />
+                        >
+                            <option value="">--</option>
+                            <% pedidos.forEach(pedido => { %>
+                            <option value="<%= pedido.id %>">
+                                <%= pedido.clienteId.nome %>
+                            </option>
+                            <% }) %>
+                        </select>
                     </div>
                     <div class="col-md-auto">
                         <label for="qtd">Quantidade de produtos:*</label>
@@ -30,6 +36,7 @@
                             class="form-control"
                             id="qtd"
                             name="qtd"
+                            placeholder="Insira a quantidade"
                             required
                         />
                     </div>
@@ -40,6 +47,7 @@
                             class="form-control"
                             id="total"
                             name="total"
+                            placeholder="Insira o valor total"
                             required
                         />
                     </div>
@@ -65,9 +73,14 @@
 
                 <h6 class="text-secondary">*campo obrigatório</h6>
                 <br />
-                <button type="submit" class="btn btn-success">
-                    Adicionar pedido
-                </button>
+                <div class="row mx-1 justify-content-between">
+                    <button type="submit" class="col col-md-2 btn btn-success">
+                        Adicionar pedido
+                    </button>
+                    <a href="/clientes" class="col col-md-2 btn btn-warning">
+                        Novo cliente
+                    </a>
+                </div>
             </form>
         </div>
     </div>
@@ -86,6 +99,7 @@
                         <th scope="col">Id</th>
                         <th scope="col" class="col-3">Cliente</th>
                         <th scope="col">Quantidade</th>
+                        <th scope="col">Valor</th>
                         <th scope="col">Data do Pedido</th>
                         <th scope="col">Prazo do Envio</th>
                         <th scope="col">Prazo da Entrega</th>
@@ -101,6 +115,10 @@
                         <th scope="row"><%= pedido.id %></th>
                         <td><%= pedido.clienteId.nome %></td>
                         <td><%= pedido.qtd %></td>
+                        <td>
+                            <%= pedido.total.toLocaleString("pt-BR", {style:
+                            'currency', currency: 'BRL'}) %>
+                        </td>
                         <td>
                             <% if (pedido.datPedido) { %> <%= new
                             Date(pedido.datPedido).toLocaleDateString('pt-BR')
@@ -127,7 +145,13 @@
                             Date(pedido.datEntrega).toLocaleTimeString('pt-BR')
                             %> <% } %>
                         </td>
-                        <td><a href="#" class="btn btn-warning">Editar</a></td>
+                        <td>
+                            <a
+                                href="/pedidos/edit/<%= pedido.id %>"
+                                class="btn btn-warning"
+                                >Editar</a
+                            >
+                        </td>
                         <td>
                             <% if(pedido.datEntrega){ %>
                             <p
@@ -136,11 +160,13 @@
                                 Finalizado
                             </p>
                             <% }else{ %>
-                            <a
+                            <button
                                 href="/pedidos/cancelar/<%= pedido.id %>"
+                                onclick="return confirm('Deseja realmente deletar o pedido <%= pedido.id %>')"
                                 class="btn btn-danger"
-                                >Cancelar</a
                             >
+                                Cancelar
+                            </button>
                             <% } %>
                         </td>
                     </tr>

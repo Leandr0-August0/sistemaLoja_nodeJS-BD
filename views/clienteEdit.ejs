@@ -1,0 +1,60 @@
+<%- include('../views/partials/header') %>
+<!--  -->
+<%- include('../views/partials/navbar') %>
+
+<div class="container">
+    <div class="card shadow-lg p-3 mx-5 bg-white rounded">
+        <div class="card-header bg-dark text-light">
+            <h1>Editar Cliente</h1>
+        </div>
+        <div class="card-body">
+            <form action="/clientes/update" method="post">
+                <label for="nome">Nome:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="nome"
+                    value="<%= cliente.nome %>"
+                    name="nome"
+                    required
+                />
+
+                <div class="row">
+                    <div class="col-md">
+                        <label for="email">Email:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="email"
+                            value="<%= cliente.email %>"
+                            name="email"
+                            required
+                        />
+                    </div>
+                    <div class="col-md-auto">
+                        <label for="tel">Telefone:</label>
+                        <input
+                            type="tel"
+                            class="form-control"
+                            id="tel"
+                            value="<%= cliente.tel %>"
+                            name="tel"
+                            required
+                        />
+                    </div>
+                </div>
+                <input type="hidden" name="id" value="<%= cliente.id %>" />
+                <br />
+                <button
+                    type="submit"
+                    onclick="return confirm('Deseja realmente deletar o cliente <%= cliente.nome %>')"
+                    class="btn btn-warning mb-2"
+                >
+                    Alterar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../views/partials/footer') %>
