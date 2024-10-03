@@ -1,6 +1,5 @@
 import Sequelize from "sequelize";
 import conection from "../config/sequelize-config.js";
-import Produtos from "./Produto.js";
 
 const Categorias = conection.define("categorias", {
     categoria: {
@@ -9,10 +8,6 @@ const Categorias = conection.define("categorias", {
     },
 });
 
-// Categorias.hasMany(Produtos, {
-//     foreignKey: "categoria",
-//     as: "produtos",
-// });
 
 Categorias.sync({ force: false });
 export default Categorias;

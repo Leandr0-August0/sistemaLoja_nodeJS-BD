@@ -7,6 +7,83 @@
 <div class="bg-info mx-auto" style="height: 3px; width: 90%"></div>
 <br />
 
+<div class="container">
+    <div class="card shadow-lg p-3 mx-5 bg-white">
+        <div class="card-header bg-dark text-light">
+            <h1>Cadastrar categoria</h1>
+        </div>
+        <div class="card-body">
+            <form action="/categorias/new" method="post">
+                <label for="categoria">Nome da categoria:*</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="categoria"
+                    name="categoria"
+                    placeholder="Escreva o nome da categoria"
+                    required
+                />
+                <h6 class="text-secondary">*campo obrigatório</h6>
+                <br />
+                <button type="submit" class="btn btn-success md-2">
+                    Cadastrar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+<div class="container">
+    <div class="card shadow-lg p-3 mx-5 bg-white">
+        <div class="card-header bg-dark text-light">
+            <h1>Cadastrar produto</h1>
+        </div>
+        <div class="card-body">
+            <form action="/produto/new">
+                <div class="row">
+                    <div class="col col-md">
+                        <label for="produto">Nome do produto:*</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Escreva o nome do tênis"
+                            id="produto"
+                            name="produto"
+                            required
+                        />
+                    </div>
+                    <div class="col col-md-4">
+                        <label for="valor">Preço:*</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="valor"
+                            id="valor"
+                            required
+                        />
+                    </div>
+                </div>
+                    <label for="imagem">Imagem do produto:*</label>
+                    <input
+                        type="url"
+                        class="form-control"
+                        placeholder="Insira a URL da imagem do tênis"
+                        id="imagem"
+                        name="imagem"
+                        required
+                    />
+                <h6 class="text-secondary">*campo obrigatório</h6>
+                <br>
+                <button class="btn btn-success md-2">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br />
+<div class="bg-info mx-auto" style="height: 3px; width: 90%"></div>
+<br />
+
 <% categorias.forEach((categoria) => { %>
 <h4 class="text-info mx-5">
     <b>
@@ -15,9 +92,11 @@
 </h4>
 
 <% if (categoria.Produtos.length > 0) { %>
+    <!-- length não é aceito pois o programa acha que é um atributo!! -->
 <!--  -->
-<% categoria.Produtos.forEach((produto) => { %> 
-<!-- corpo do site -->
+<% categoria.forEach((produto) => { %> 
+    <!-- esse for não é aceito como uma função (acho que por estar dentro de outro)!! -->
+     
 <!--row-cols-md- (NUMERO DE CLOUNAS)-->
 <div class="row row-cols-1 row-cols-md-5 g-4" id="wrap">
     <!-- CARD inicio -->
@@ -25,7 +104,7 @@
         <div class="card shadow p-3 mb-5 bg-white rounded">
             <!-- Imagem do produto -->
             <img
-                src="<%= produtos.imagem %>"
+                src="<%= produto.imagem %>"
                 class="card-img-top"
                 id="fotos"
                 height="200px"
@@ -39,8 +118,7 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <!-- Preço do produto -->
-                    <%= produto.valor.toLocaleString("pt-BR", { style: "currency",
-                    currency: "BRL", }); %>
+                    <%= produto.valor%>
                 </li>
                 <li class="list-group-item"><%= produto.avaliacao %></li>
                 <a href="" class="btn-border-0">
@@ -59,11 +137,16 @@
 <!--  -->
 <% } else { %>
 
-<h3>Nenhum produto encontrado para esta categoria.</h3>
+    <div class="container">
+        <div class="card bg-warning text-dark">
+            <h5 class="m-1 mx-auto">Nenhum produto encontrado para esta categoria!</h5>
+        </div>
+    </div>
+    <br><br>
 
 <% } %>
 <!--  -->
-<% }) %> 
+<% }) %>
 
 <br />
 <%- include('../views/partials/footer') %>

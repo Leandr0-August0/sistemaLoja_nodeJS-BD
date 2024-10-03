@@ -35,6 +35,10 @@ Produtos.belongsTo(Categorias, {
     as: "categoriaId",
 });
 
+Categorias.hasMany(Produtos, {
+    foreignKey: "categoria",
+});
+
 //NÃO FORÇAR A CRIAÇÃO DA TABELA
 Produtos.sync({ force: false });
 export default Produtos;
