@@ -16,7 +16,7 @@ import ProdutosController from "./controllers/ProdutosController.js";
 app.use(express.urlencoded({ extended: false }));
 
 //REALIZANDO A CONEXÃO COM O BANCO DE DADOS
-conection
+conection 
     .authenticate()
     .then(() => {
         console.log("Conexão com o banco realizada com sucesso!!");
