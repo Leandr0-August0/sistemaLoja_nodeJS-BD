@@ -63,17 +63,17 @@
                         />
                     </div>
                 </div>
-                    <label for="imagem">Imagem do produto:*</label>
-                    <input
-                        type="url"
-                        class="form-control"
-                        placeholder="Insira a URL da imagem do tênis"
-                        id="imagem"
-                        name="imagem"
-                        required
-                    />
+                <label for="imagem">Imagem do produto:*</label>
+                <input
+                    type="url"
+                    class="form-control"
+                    placeholder="Insira a URL da imagem do tênis"
+                    id="imagem"
+                    name="imagem"
+                    required
+                />
                 <h6 class="text-secondary">*campo obrigatório</h6>
-                <br>
+                <br />
                 <button class="btn btn-success md-2">Cadastrar</button>
             </form>
         </div>
@@ -91,14 +91,14 @@
     </b>
 </h4>
 
-<% if (categoria.Produtos.length > 0) { %>
-    <!-- length não é aceito pois o programa acha que é um atributo!! -->
+<% if (categoria.produtos.length > 0) { %>
 <!--  -->
-<% categoria.forEach((produto) => { %> 
-    <!-- esse for não é aceito como uma função (acho que por estar dentro de outro)!! -->
-     
-<!--row-cols-md- (NUMERO DE CLOUNAS)-->
+<!--row-cols-md- (NUMERO DE CLOUNAS)
+div pai que define a quantidade de colunas-->
 <div class="row row-cols-1 row-cols-md-5 g-4" id="wrap">
+    <!-- forEach para percorres o banco e puxar as informações -->
+    <% categoria.produtos.forEach((produto) => { %>
+
     <!-- CARD inicio -->
     <div class="col">
         <div class="card shadow p-3 mb-5 bg-white rounded">
@@ -120,29 +120,42 @@
                     <!-- Preço do produto -->
                     <%= produto.valor%>
                 </li>
-                <li class="list-group-item"><%= produto.avaliacao %></li>
+                <li class="list-group-item">
+                    <% if (produto.avaliacao){ %> <%= produto.avaliacao %> <% }
+                    else { %> Não avaliado ainda <% } %>
+                </li>
                 <a href="" class="btn-border-0">
                     <li class="list-group-item">Edit</li>
                 </a>
             </ul>
             <div class="card-footer">
-                <small class="text-muted">Última alteração: 3 mins atrás</small>
+                <small class="text-muted">Última alteração: <br>
+                    <% const dataCompleta = new Date(produto.updatedAt); const
+                    dataFormatada = dataCompleta.toLocaleDateString('pt-BR');
+                    const horaFormatada =
+                    dataCompleta.toLocaleTimeString('pt-BR', { hour: '2-digit',
+                    minute: '2-digit' }); %>
+                    Data: <%= dataFormatada %> <br>
+                    Hora: <%= horaFormatada %>
+                </small>
             </div>
         </div>
     </div>
     <!-- CARD fim -->
+    <% }) %>
+    <!-- FIM DO forEach() -->
 </div>
-
-<% }) %>
 <!--  -->
 <% } else { %>
 
-    <div class="container">
-        <div class="card bg-warning text-dark">
-            <h5 class="m-1 mx-auto">Nenhum produto encontrado para esta categoria!</h5>
-        </div>
+<div class="container">
+    <div class="card bg-warning text-dark">
+        <h5 class="m-1 mx-auto">
+            Nenhum produto encontrado para esta categoria!
+        </h5>
     </div>
-    <br><br>
+</div>
+<br /><br />
 
 <% } %>
 <!--  -->
