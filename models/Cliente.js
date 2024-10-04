@@ -1,26 +1,24 @@
-// ORM - Sequelize
 import Sequelize from "sequelize";
-
-// Configuração do Sequelize
 import conection from "../config/sequelize-config.js";
 
-// .define cria a tabela no banco
+// .define CRIA A TABELA NOBANCO
 const Clientes = conection.define("clientes", {
-  nome: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  tel: {
-    type: Sequelize.BIGINT(11),
-    allowNull: false,
-  },
+    //O SEQUELIZE CRIA A PRIMARY KEY AUTOMATICAMENTE COMO "id"
+    nome: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    tel: {
+        type: Sequelize.BIGINT(11),
+        allowNull: false,
+    },
 });
 
-// Não força a criação da tabela caso já exista
+//NÃO FORÇA A CRIAÇÃO DA TABELA CASO ELA JÁ EXISTA
 Clientes.sync({ force: false });
 export default Clientes;
  

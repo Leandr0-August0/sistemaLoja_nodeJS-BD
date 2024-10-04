@@ -1,0 +1,77 @@
+<%- include('./partials/header.ejs') %>
+<!--  -->
+<%- include('./partials/navbar.ejs') %>
+
+<div class="container">
+    <div class="card shadow-lg p-3 mx-5 bg-white rounded">
+        <div class="card-header bg-dark text-light">
+            <h1>Editar Produto</h1>
+        </div>
+        <div class="card-body">
+            <form action="/produto/update" method="post">
+                <div class="row">
+                    <div class="row">
+                        <input type="hidden" id="id" name="id" value="<%= produtos.id %>">
+                        <div class="col col-md-4">
+                            <label for="categoria"
+                                >Categoria relacionada:</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Insira o nome do cliente"
+                                value="<%= produtos.categoriaId.categoria %>"
+                                readonly
+                            />
+                        </div>
+                        <div class="col col-md">
+                            <label for="produto">Nome do produto:*</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="<%= produtos.produto %>"
+                                id="produto"
+                                name="produto"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-md-4">
+                            <label for="valor">Preço:*</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="valor"
+                                id="valor"
+                                value="<%= produtos.valor %>"
+                                required
+                            />
+                        </div>
+                        <div class="col col-md">
+                            <label for="imagem">Imagem do produto:*</label>
+                            <input
+                                type="url"
+                                class="form-control"
+                                value="<%= produtos.imagem %>"
+                                id="imagem"
+                                name="imagem"
+                                required
+                            />
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <button
+                    type="submit"
+                    onclick="return confirm('Deseja realmente alterar o pedido <%= produtos.id %>')"
+                    class="btn btn-warning"
+                >
+                    Alterar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer.ejs') %>

@@ -2,10 +2,17 @@ import express from "express";
 const router = express.Router();
 // Importando o model de Cliente
 import Clientes from "../models/Cliente.js";
+import Pedidos from '../models/Pedido.js'
 
 // ROTA CLIENTES
 router.get("/clientes", (req, res) => {
-    Clientes.findAll()
+    Clientes.findAll({
+        include: {
+            model: Pedidos,
+            as: "pedidos",
+            required: false,
+        },
+    })
         .then((clientes) => {
             res.render("clientes", {
                 clientes: clientes,

@@ -10,13 +10,17 @@ router.get("/pedidos", (req, res) => {
         include: {
             model: Clientes, // Modelo relacionado
             as: "clienteId", // Alias definido na associação
-            attributes: ["nome"], // Somente o campo "nome" do cliente será incluído
+            attributes: ["nome"], // Somente o campo "nome" do cliente será incluído (INNER JOIN)
         },
-    }).then((pedidos) => {
-        res.render("pedidos", {
-            pedidos: pedidos,
+    })
+        .then((pedidos) => {
+            res.render("pedidos", {
+                pedidos: pedidos,
+            });
+        })
+        .catch((error) => {
+            console.log(error);
         });
-    });
 });
 
 //ROTA DE CADASTRO
@@ -74,7 +78,7 @@ router.get("/pedidos/edit/:id", (req, res) => {
     Pedidos.findByPk(id, {
         include: {
             model: Clientes, // Faz o INNER JOIN com a tabela Cliente
-            as: 'clienteId',
+            as: "clienteId",
             attributes: ["nome"], // Inclui apenas o campo "nome" do Cliente
         },
     })
@@ -100,6 +104,7 @@ router.post("/pedidos/update", (req, res) => {
         return `${year}-${month}-${day} ${hours}:${minutes}:00`; // Retorna no formato esperado
     }
 
+    const id = req.body.id;
     const cliente = req.body.cliente;
     const qtd = req.body.qtd;
     const total = req.body.total;
@@ -119,7 +124,7 @@ router.post("/pedidos/update", (req, res) => {
         },
         {
             where: {
-                cliente: cliente,
+                id: id,
             },
         }
     )

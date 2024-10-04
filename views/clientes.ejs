@@ -2,7 +2,7 @@
 <!--  -->
 <%- include('../views/partials/navbar') %>
 
-<h2 id="titulo" class="text-info"><br /><b>Clientes</b></h2>
+<h2 id="titulo" class="text-info"><br /><b>Clientes Centipede</b></h2>
 
 <div class="bg-info mx-auto my-5" style="height: 3px; width: 90%"></div>
 
@@ -90,13 +90,23 @@
                             >
                         </td>
                         <td>
+                            <!-- filtrar pedidos (não tô afim, muito trampo!)-->
+                            <% if(cliente.pedidos.length > 0){ %> 
+                            <a
+                                href="#"
+                                class="btn btn-success form-control"
+                                id="btnFiltrar"
+                                >Pedidos...</a
+                            >   
+                            <% } else { %>
                             <a
                                 href="/clientes/delete/<%= cliente.id %>"
                                 onclick="return confirm('Deseja realmente deletar o cliente <%= cliente.nome %>')"
-                                class="btn btn-danger"
+                                class="btn btn-danger form-control"
                                 id="btnExcluir"
                                 >Excluir</a
                             >
+                            <% } %>
                         </td>
                     </tr>
                     <% }) %>
