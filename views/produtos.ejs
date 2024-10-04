@@ -4,91 +4,114 @@
 
 <h2 id="titulo" class="text-info"><br /><b>Produtos Centipede</b></h2>
 <br />
-<div class="bg-info mx-auto" style="height: 3px; width: 90%"></div>
+<div class="bg-info mx-auto my-4" style="height: 3px; width: 90%"></div>
 <br />
 
 <div class="container">
-    <div class="card shadow-lg p-3 mx-5 bg-white">
-        <div class="card-header bg-dark text-light">
-            <h1>Cadastrar categoria</h1>
-        </div>
-        <div class="card-body">
-            <form action="/categorias/new" method="post">
-                <label for="categoria">Nome da categoria:*</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="categoria"
-                    name="categoria"
-                    placeholder="Escreva o nome da categoria"
-                    required
-                />
-                <h6 class="text-secondary">*campo obrigatório</h6>
-                <br />
-                <button type="submit" class="btn btn-success md-2">
-                    Cadastrar
-                </button>
-            </form>
-        </div>
-    </div>
+	<div class="card shadow-lg p-3 mx-5 bg-white">
+		<div class="card-header bg-dark text-light">
+			<h1>Cadastrar categoria</h1>
+		</div>
+		<div class="card-body">
+			<form action="/categoria/new" method="post">
+				<label for="nomeCat">Nome da categoria:*</label>
+				<input
+					type="text"
+					class="form-control"
+					id="nomeCat"
+					name="nomeCat"
+					placeholder="Escreva o nome da categoria"
+					required
+				/>
+				<h6 class="text-secondary">*campo obrigatório</h6>
+				<br />
+				<button type="submit" class="btn btn-success md-2">
+					Cadastrar
+				</button>
+			</form>
+		</div>
+	</div>
 </div>
 <br />
 <div class="container">
-    <div class="card shadow-lg p-3 mx-5 bg-white">
-        <div class="card-header bg-dark text-light">
-            <h1>Cadastrar produto</h1>
-        </div>
-        <div class="card-body">
-            <form action="/produto/new">
-                <div class="row">
-                    <div class="col col-md">
-                        <label for="produto">Nome do produto:*</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Escreva o nome do tênis"
-                            id="produto"
-                            name="produto"
-                            required
-                        />
-                    </div>
-                    <div class="col col-md-4">
-                        <label for="valor">Preço:*</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="valor"
-                            id="valor"
-                            required
-                        />
-                    </div>
-                </div>
-                <label for="imagem">Imagem do produto:*</label>
-                <input
-                    type="url"
-                    class="form-control"
-                    placeholder="Insira a URL da imagem do tênis"
-                    id="imagem"
-                    name="imagem"
-                    required
-                />
-                <h6 class="text-secondary">*campo obrigatório</h6>
-                <br />
-                <button class="btn btn-success md-2">Cadastrar</button>
-            </form>
-        </div>
-    </div>
+	<div class="card shadow-lg p-3 mx-5 bg-white">
+		<div class="card-header bg-dark text-light">
+			<h1>Cadastrar produto</h1>
+		</div>
+		<div class="card-body">
+			<form action="/produto/new" method="post">
+				<div class="row">
+					<div class="col col-md-4">
+						<label for="categoria">Categoria relacionada:*</label>
+						<select
+							name="categoria"
+							id="categoria"
+							class="form-control"
+						>
+							<option value="">--</option>
+							<% categorias.forEach(categoria =>{ %>
+							<option value="<%= categoria.id %>">
+								<%= categoria.categoria %>
+							</option>
+							<% }) %>
+						</select>
+					</div>
+					<div class="col col-md">
+						<label for="produto">Nome do produto:*</label>
+						<input
+							type="text"
+							class="form-control"
+							placeholder="Escreva o nome do tênis"
+							id="produto"
+							name="produto"
+							required
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-md-4">
+						<label for="valor">Preço:*</label>
+						<input
+							type="text"
+							class="form-control"
+							name="valor"
+							id="valor"
+							placeholder="Insira o valor do produto"
+							required
+						/>
+					</div>
+					<div class="col col-md">
+						<label for="imagem">Imagem do produto:*</label>
+						<input
+							type="url"
+							class="form-control"
+							placeholder="Insira a URL da imagem do tênis"
+							id="imagem"
+							name="imagem"
+							required
+						/>
+					</div>
+				</div>
+
+				<h6 class="text-secondary">*campo obrigatório</h6>
+				<br />
+				<button type="submit" class="btn btn-success md-2">
+					Cadastrar
+				</button>
+			</form>
+		</div>
+	</div>
 </div>
 
 <br />
-<div class="bg-info mx-auto" style="height: 3px; width: 90%"></div>
+<div class="bg-info mx-auto my-4" style="height: 3px; width: 90%"></div>
 <br />
 
 <% categorias.forEach((categoria) => { %>
 <h4 class="text-info mx-5">
-    <b>
-        <p><%= categoria.categoria %></p>
-    </b>
+	<b>
+		<p><%= categoria.categoria %></p>
+	</b>
 </h4>
 
 <% if (categoria.produtos.length > 0) { %>
@@ -96,64 +119,64 @@
 <!--row-cols-md- (NUMERO DE CLOUNAS)
 div pai que define a quantidade de colunas-->
 <div class="row row-cols-1 row-cols-md-5 g-4" id="wrap">
-    <!-- forEach para percorres o banco e puxar as informações -->
-    <% categoria.produtos.forEach((produto) => { %>
+	<!-- forEach para percorres o banco e puxar as informações -->
+	<% categoria.produtos.forEach((produto) => { %>
 
-    <!-- CARD inicio -->
-    <div class="col">
-        <div class="card shadow p-3 mb-5 bg-white rounded">
-            <!-- Imagem do produto -->
-            <img
-                src="<%= produto.imagem %>"
-                class="card-img-top"
-                id="fotos"
-                height="200px"
-                width="auto"
-                alt=""
-            />
-            <div class="card-body overflow-auto dropdown" id="card">
-                <!-- Nome do produto -->
-                <b><%= produto.produto %></b>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <!-- Preço do produto -->
-                    <%= produto.valor%>
-                </li>
-                <li class="list-group-item">
-                    <% if (produto.avaliacao){ %> <%= produto.avaliacao %> <% }
-                    else { %> Não avaliado ainda <% } %>
-                </li>
-                <a href="" class="btn-border-0">
-                    <li class="list-group-item">Edit</li>
-                </a>
-            </ul>
-            <div class="card-footer">
-                <small class="text-muted">Última alteração: <br>
-                    <% const dataCompleta = new Date(produto.updatedAt); const
-                    dataFormatada = dataCompleta.toLocaleDateString('pt-BR');
-                    const horaFormatada =
-                    dataCompleta.toLocaleTimeString('pt-BR', { hour: '2-digit',
-                    minute: '2-digit' }); %>
-                    Data: <%= dataFormatada %> <br>
-                    Hora: <%= horaFormatada %>
-                </small>
-            </div>
-        </div>
-    </div>
-    <!-- CARD fim -->
-    <% }) %>
-    <!-- FIM DO forEach() -->
+	<!-- CARD inicio -->
+	<div class="col">
+		<div class="card shadow p-3 mb-5 bg-white rounded">
+			<!-- Imagem do produto -->
+			<img
+				src="<%= produto.imagem %>"
+				class="card-img-top"
+				id="fotos"
+				height="200px"
+				width="auto"
+				alt=""
+			/>
+			<div class="card-body overflow-auto dropdown" id="card">
+				<!-- Nome do produto -->
+				<b><%= produto.produto %></b>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<!-- Preço do produto -->
+					<%= produto.valor%>
+				</li>
+				<li class="list-group-item">
+					<% if (produto.avaliacao){ %> <%= produto.avaliacao %> <% }
+					else { %> Não avaliado ainda <% } %>
+				</li>
+				<a href="/edit/<%= produto.id %>" class="btn btn-warning text-start">
+					Edit
+				</a>
+			</ul>
+			<div class="card-footer">
+				<small class="text-muted"
+					>Última alteração: <br />
+					<% const dataCompleta = new Date(produto.updatedAt); const
+					dataFormatada = dataCompleta.toLocaleDateString('pt-BR');
+					const horaFormatada =
+					dataCompleta.toLocaleTimeString('pt-BR', { hour: '2-digit',
+					minute: '2-digit' }); %> Data: <%= dataFormatada %> <br />
+					Hora: <%= horaFormatada %>
+				</small>
+			</div>
+		</div>
+	</div>
+	<!-- CARD fim -->
+	<% }) %>
+	<!-- FIM DO forEach() -->
 </div>
 <!--  -->
 <% } else { %>
 
 <div class="container">
-    <div class="card bg-warning text-dark">
-        <h5 class="m-1 mx-auto">
-            Nenhum produto encontrado para esta categoria!
-        </h5>
-    </div>
+	<div class="card bg-warning text-dark">
+		<h5 class="m-1 mx-auto">
+			Nenhum produto encontrado para esta categoria!
+		</h5>
+	</div>
 </div>
 <br /><br />
 
