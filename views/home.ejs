@@ -1,0 +1,43 @@
+<%- include('../views/partials/header') %>
+<!--  -->
+<%- include('../views/partials/navbar') %>
+
+<br>
+<h4 id="titulo">
+    <p class="lead text-info">Bem-vindo admin!</p>
+    <p class="lead text-info">Navege até a página que deseja alterar!</p>
+</h4>
+<div class="bg-info mx-auto my-5" style="height: 3px; width: 90%"></div>
+
+<!-- quadro principal -->
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-dark text-light">
+            <h1>Para onde deseja ir?</h1>
+        </div>
+        <div class="card-body">
+            <div class="col col-md-2">
+                <a
+                    class="btn btn-info form-control mb-2"
+                    href="/produtos"
+                    role="button"
+                    >Verificar produtos</a
+                >
+                <a
+                    class="btn btn-info form-control mb-2"
+                    href="/pedidos"
+                    role="button"
+                    >Verificar pedidos</a
+                >
+                <a
+                    class="btn btn-info form-control mb-2"
+                    href="/clientes"
+                    role="button"
+                    >Verificar clientes</a
+                >
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../views/partials/footer') %>
