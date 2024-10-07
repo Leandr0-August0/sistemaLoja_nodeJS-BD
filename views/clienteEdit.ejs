@@ -46,6 +46,13 @@
                 <input type="hidden" name="id" value="<%= cliente.id %>" />
                 <br />
                 <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="window.history.back();"
+                >
+                    Cancelar
+                </button>
+                <button
                     type="submit"
                     onclick="return confirm('Deseja realmente deletar o cliente <%= cliente.nome %>')"
                     class="btn btn-warning mb-2"

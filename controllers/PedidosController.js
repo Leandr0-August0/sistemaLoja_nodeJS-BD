@@ -5,16 +5,26 @@ import Pedidos from "../models/Pedido.js";
 import Clientes from "../models/Cliente.js";
 
 // ROTA PEDIDOS
-router.get("/pedidos", (req, res) => {
-    Pedidos.findAll({
-        include: {
-            model: Clientes, // Modelo relacionado
-            as: "clienteId", // Alias definido na associação
-            attributes: ["nome"], // Somente o campo "nome" do cliente será incluído (INNER JOIN)
-        },
-    })
-        .then((pedidos) => {
+router.get("/pedidos", (req,res) => {
+    Promise.all([
+        Clientes.findAll({
+            include: {
+                model: Pedidos, // Modelo relacionado
+                as: "pedidos", // Alias definido na associação
+                required: false, //left join - vai puxar todos os clientes independente se há algum pedido
+            },
+        }),
+        Pedidos.findAll({
+            include: {
+                model: Clientes, // Modelo relacionado
+                as: "clienteId", // Alias definido na associação
+                required: false, //left join - vai puxar todos os clientes independente se há algum pedido
+            },
+        }),
+    ])
+        .then(([clientes, pedidos]) => {
             res.render("pedidos", {
+                clientes: clientes,
                 pedidos: pedidos,
             });
         })

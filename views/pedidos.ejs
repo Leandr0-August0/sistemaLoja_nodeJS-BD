@@ -22,9 +22,9 @@
                             required
                         >
                             <option value="">--</option>
-                            <% pedidos.forEach(pedido => { %>
-                            <option value="<%= pedido.id %>">
-                                <%= pedido.clienteId.nome %>
+                            <% clientes.forEach(cliente => { %>
+                            <option value="<%= cliente.id %>">
+                                <%= cliente.nome %>
                             </option>
                             <% }) %>
                         </select>
@@ -87,7 +87,7 @@
 </div>
 <br />
 <div class="container">
-    <div class="card shadow-lg p-3 mx-5 bg-white rounded">
+    <div class="card shadow-lg p-3  bg-white rounded">
         <div class="card-header bg-dark text-light bordered-4">
             <h1>Pedidos</h1>
         </div>
@@ -116,20 +116,23 @@
                         <td><%= pedido.clienteId.nome %></td>
                         <td><%= pedido.qtd %></td>
                         <td>
-                            <%= pedido.total.toLocaleString("pt-BR", {style:
-                            'currency', currency: 'BRL'}) %>
+                            <%= new Intl.NumberFormat("pt-BR",
+                            {style:"currency", currency:
+                            "BRL"}).format(pedido.total) %>
                         </td>
                         <td>
-                            <% if (pedido.datPedido) { %> <%= new
+                            <%= new
                             Date(pedido.datPedido).toLocaleDateString('pt-BR')
                             %>
                             <br />
                             <%= new
                             Date(pedido.datPedido).toLocaleTimeString('pt-BR')
-                            %> <% } %>
+                            %>
                         </td>
                         <td>
-                            <% if (pedido.datEnvio) { %> <%= new
+                            <% if (pedido.datEnvio) { %>
+                            <!--  -->
+                            <%= new
                             Date(pedido.datEnvio).toLocaleDateString('pt-BR') %>
                             <br />
                             <%= new
@@ -137,7 +140,9 @@
                             <% } %>
                         </td>
                         <td>
-                            <% if (pedido.datEntrega) { %> <%= new
+                            <% if (pedido.datEntrega) { %>
+                            <!--  -->
+                            <%= new
                             Date(pedido.datEntrega).toLocaleDateString('pt-BR')
                             %>
                             <br />

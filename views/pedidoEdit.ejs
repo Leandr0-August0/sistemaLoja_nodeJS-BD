@@ -14,7 +14,12 @@
             <form action="/pedidos/update" method="post">
                 <div class="row">
                     <div class="col-md">
-                        <input type="hidden" id="id" name="id" value="<%= pedidos.id %>">
+                        <input
+                            type="hidden"
+                            id="id"
+                            name="id"
+                            value="<%= pedidos.id %>"
+                        />
                         <label for="cliente">Cliente que fez o pedido:#</label>
                         <input
                             type="text"
@@ -96,6 +101,13 @@
                 </div>
 
                 <br />
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="window.history.back();"
+                >
+                    Cancelar
+                </button>
                 <button
                     type="submit"
                     onclick="return confirm('Deseja realmente deletar o pedido <%= pedidos.id %>')"

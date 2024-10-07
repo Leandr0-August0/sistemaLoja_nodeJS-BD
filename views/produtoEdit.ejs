@@ -11,7 +11,12 @@
             <form action="/produto/update" method="post">
                 <div class="row">
                     <div class="row">
-                        <input type="hidden" id="id" name="id" value="<%= produtos.id %>">
+                        <input
+                            type="hidden"
+                            id="id"
+                            name="id"
+                            value="<%= produtos.id %>"
+                        />
                         <div class="col col-md-4">
                             <label for="categoria"
                                 >Categoria relacionada:</label
@@ -62,6 +67,13 @@
                     </div>
                 </div>
                 <br />
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="window.history.back();"
+                >
+                    Cancelar
+                </button>
                 <button
                     type="submit"
                     onclick="return confirm('Deseja realmente alterar o pedido <%= produtos.id %>')"

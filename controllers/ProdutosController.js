@@ -75,11 +75,13 @@ router.get("/produto/edit/:id", (req, res) => {
 
 //ROTA DE ALTERAÇÃO
 router.post("/produto/update", (req, res) => {
-    const id = req.body.id;
-    const categoria = req.body.categoria;
-    const produto = req.body.produto;
-    const valor = req.body.valor;
-    const imagem = req.body.imagem;
+    // const id = req.body.id;
+    // const categoria = req.body.categoria;
+    // const produto = req.body.produto;
+    // const valor = req.body.valor;
+    // const imagem = req.body.imagem;
+    const { id, categoria, produto, valor, imagem } = req.body;
+    
     Produtos.update(
         {
             categoria: categoria,
