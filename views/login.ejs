@@ -1,6 +1,4 @@
 <%- include('./partials/header.ejs') %>
-<!--  -->
-<%- include('./partials/navbar.ejs') %>
 
 <div class="container">
     <div class="card shadow-lg p-3 mx-5 bg-white rounded">
@@ -8,19 +6,19 @@
             <h1>Login</h1>
         </div>
         <div class="card-body">
-            <form action="/entrar" method="post">
+            <form action="/check" method="post">
                 <div class="row">
                     <div class="row">
                         <div class="col col-md-4">
-                            <label for="login"
-                                >Login:*</label
+                            <label for="email"
+                                >Email:*</label
                             >
                             <input
                                 type="text"
                                 class="form-control"
                                 placeholder="Insira o nome de usuario"
-                                id="login"
-                                name="login"
+                                id="email"
+                                name="email"
                                 required
                             />
                         </div>
@@ -53,7 +51,7 @@
                     </div>
                     <div class="col">
                         <p class="text-secondary">
-                            Não se cadastrou? Então <a href="/cadastrar" class="text-success">cadastre-se</a>!
+                            Não se cadastrou? Então <a href="/register" class="text-success">cadastre-se</a>!
                         </p>
                     </div>
                 </div>

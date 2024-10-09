@@ -11,6 +11,7 @@ import conection from "./config/sequelize-config.js";
 import ClientesController from "./controllers/ClientesController.js";
 import PedidosController from "./controllers/PedidosController.js";
 import ProdutosController from "./controllers/ProdutosController.js";
+import LoginController from './controllers/LoginController.js'
 
 //PERMITINDO CAPTURAR OS DADOS VINDOS DO FORMULÁRIO
 app.use(express.urlencoded({ extended: false }));
@@ -45,10 +46,14 @@ app.use(express.static("public"));
 app.use("/", ClientesController);
 app.use("/", PedidosController);
 app.use("/", ProdutosController);
+app.use('/', LoginController)
 
 //ROTA PRINCIPAL
+// app.get("/", (req, res) => {
+//     res.redirect("/login");
+// });
 app.get("/", (req, res) => {
-    res.render("index");
+    res.render("home");
 });
 
 //INICIA O SERVIDOR NA PORTA 8080

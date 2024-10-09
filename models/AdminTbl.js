@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-import conection from "../config/sequelize-config";
+import conection from "../config/sequelize-config.js";
 
 const Administrador = conection.define("admins", {
     nome: {
@@ -8,10 +8,6 @@ const Administrador = conection.define("admins", {
     },
     email: {
         type: Sequelize.STRING(100),
-        allowNull: false,
-    },
-    login: {
-        type: Sequelize.STRING(25),
         allowNull: false,
     },
     senha: {

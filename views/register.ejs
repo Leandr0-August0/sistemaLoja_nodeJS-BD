@@ -3,11 +3,26 @@
 <div class="container">
     <div class="card shadow-lg p-3 mx-5 bg-white rounded">
         <div class="card-header bg-dark text-light">
-            <h1>Login</h1>
+            <h1>Registrar</h1>
         </div>
         <div class="card-body">
-            <form action="/check" method="post">
+            <form action="/register/new" method="post">
                 <div class="row">
+                    <div class="row">
+                        <div class="col">
+                            <label for="nome"
+                                >Nome:*</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Insira um nome de usuario"
+                                id="nome"
+                                name="nome"
+                                required
+                            />
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col col-md-4">
                             <label for="email"
@@ -16,7 +31,7 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                placeholder="Insira seu email"
+                                placeholder="Insira um email"
                                 id="email"
                                 name="email"
                                 required
@@ -29,8 +44,8 @@
                             <input
                                 type="password"
                                 class="form-control"
+                                placeholder="Insira uma senha"
                                 name="senha"
-                                placeholder="Insira sua senha"
                                 id="senha"
                                 required
                             />
@@ -52,7 +67,7 @@
                     </div>
                     <div class="col">
                         <p class="text-secondary">
-                            Não se cadastrou? Então <a href="/register" class="text-success">cadastre-se</a>.
+                            Já tem conta? Então faça o <a href="/login" class="text-success">login</a>.
                         </p>
                     </div>
                 </div>
