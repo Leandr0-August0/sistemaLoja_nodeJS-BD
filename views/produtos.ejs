@@ -166,6 +166,13 @@ div pai que define a quantidade de colunas-->
                     Hora: <%= horaFormatada %>
                 </small>
             </div>
+            <a
+                href="/produto/delete/<%= produto.id %>"
+                onclick="return confirm('Tem certeza que quer deletar o <%= produto.produto %>')"
+                class="btn btn-danger text-start"
+            >
+                Deletar Produto
+            </a>
         </div>
     </div>
     <!-- CARD fim -->

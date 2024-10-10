@@ -75,7 +75,7 @@ router.get("/produto/edit/:id", async (req, res) => {
 		});
 	} catch {
 		console.log("Houve um erro na busca dos produtos");
-	} 
+	}
 });
 
 //ROTA DE ALTERAÇÃO
@@ -100,6 +100,21 @@ router.post("/produto/update", (req, res) => {
 			},
 		}
 	)
+		.then(() => {
+			res.redirect("/produtos");
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+});
+
+router.get("/produto/delete/:id", (req, res) => {
+	const id = req.params.id;
+	Produtos.destroy({
+		where: {
+			id: id,
+		},
+	})
 		.then(() => {
 			res.redirect("/produtos");
 		})
