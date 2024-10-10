@@ -21,13 +21,12 @@
                             <label for="categoria"
                                 >Categoria relacionada:</label
                             >
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Insira o nome do cliente"
-                                value="<%= produtos.categoriaId.categoria %>"
-                                readonly
-                            />
+                            <select name="categoria" id="categoria" class="form-control">
+                                <option value=""><%= produtos.categoriaId.categoria %></option>
+                                <% categorias.forEach(categoria =>{ %>
+                                    <option value="<%= categoria.id %>"><%= categoria.categoria %></option>
+                                <% }) %>
+                            </select>
                         </div>
                         <div class="col col-md">
                             <label for="produto">Nome do produto:*</label>
