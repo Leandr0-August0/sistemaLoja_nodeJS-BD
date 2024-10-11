@@ -13,7 +13,7 @@ const Administrador = conection.define("admins", {
     senha: {
         type: Sequelize.STRING(25),
         allowNull: false,
-    },
+    }, 
 });
 
 Administrador.sync({ force: false });

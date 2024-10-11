@@ -63,5 +63,5 @@ app.listen(port, (error) => {
         console.log(`Ocorreu um erro ao iniciar o servidor: ${error}`);
     } else {
         console.log(`Servidor iniciado com sucesso em: http://localhost:${port}`);
-    }
+    } 
 });
