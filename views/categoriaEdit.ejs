@@ -1,0 +1,49 @@
+<%- include('../views/partials/header') %>
+<!--  -->
+<%- include('../views/partials/navbar') %>
+
+<div class="container">
+    <div class="card shadow-lg p-3 mx-5 bg-white rounded">
+        <div class="card-header bg-dark text-light">
+            <h1>Editar Categoria</h1>
+        </div>
+        <div class="card-body">
+            <form action="/categoria/update" method="post">
+                <input type="hidden" name="id" value="<%= categoria.id %>" />
+                <label for="nome">Nome da categoria:*</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="categoria"
+                    value="<%= categoria.categoria %>"
+                    name="categoria"
+                    required
+                />
+                <h6 class="text-secondary">*campo obrigatório</h6>
+                <br />
+                <div class="row">
+                    <div class="col col-md-auto">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            onclick="window.history.back();"
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                    <div class="col col-md-auto">
+                        <button
+                            type="submit"
+                            onclick="return confirm('Deseja realmente deletar a categoria <%= categoria.categoria %>')"
+                            class="btn btn-warning mb-2"
+                        >
+                            Alterar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../views/partials/footer') %>
